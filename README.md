@@ -1,5 +1,5 @@
 # Monitoring AC ELWA-E
-Gets data of an AC ELWA-E heating element via JSON API by a python script and sends it to an InfluxDB.
+Gets data of a my-PV AC ELWA-E heating element via JSON API by a python script and sends it to an InfluxDB.
 
 ## Description
 The script collects the data the JSON API provides (see below), manipulates it if necessary and afterwards sends it to an InfluxDB. This data can be used to be visualized e.g. by Grafana to display it in panels/dashboards.

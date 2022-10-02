@@ -59,17 +59,18 @@ def getData():
 
     # check for necessary config keys
     if '' == ip:
-        print("Required config 'ip' within [source] in config.ini is missing!")
+        print('Required config "ip" within [source] in _user.ini is missing!')
         quit()
 
     fields = config.get('source', 'fields')
-    url = "http://" + ip + "/data.jsn"
+    url = 'http://' + ip + '/data.jsn'
     mypvData = json.loads(urllib.request.urlopen(url).read())
 
+    # collect all fields
     if '' == fields:
         return mypvData
 
-    # collect fields defined in config.ini
+    # collect fields defined in _config.ini/_user.ini
     mypvFields = dict()
 
     for key in mypvData:
