@@ -98,11 +98,19 @@ Log into you InfluxDB to check whether the data is stored correctly. If you use 
    - show types of collected fields (float, integer, string)
 
 ## Status
-I use this script to monitor my heating element once a minute via `task scheduler` on a Synology NAS DS720+. Grafana and InfluxDB are running in a docker container each. 
+I use this script to monitor my heating element once a minute via `task scheduler` on a Synology NAS DS720+. Grafana and InfluxDB are running in a docker container each.
 
 ### Roadmap/Still to come
 - Grafana panels & dashboards
 - Usage of tags within InfluxDB
+
+## Grafana
+### Overview panel
+My first panel is a graph which displays the `power` and the temperatures (`temp1` and `ww1target`) of the AC ELWA-E ([download json](grafana/panels/ac-elwa-e_power-and-temperatures.json)).
+
+![Overview](grafana/screenshots/ac-elwa-e_power-and-temperatures.png "Power and temperatures")
+
+All panels can be found within `grafana/panels`. Feel free to import into your dashboards and adjust to your needs.
 
 ## AC ELWA-E
 The data is provided via a JSON API which you can call via `http://<IP>>/data.jsn`. The following fields are provided by a device with the following firmware version (`fwversion`): 00204.03.
