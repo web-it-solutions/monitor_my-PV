@@ -4,11 +4,17 @@ from datetime import datetime
 from influxdb import InfluxDBClient
 
 import json
+import os
 import urllib.request
 
 # configuration
+path = os.path.dirname(__file__)
+
+if '' != path:
+    path += '/'
+
 config = ConfigParser()
-config.read(['_config.ini', '_user.ini'])
+config.read([path + '_config.ini', path + '_user.ini'])
 
 # debug mode
 debug = config.getboolean('source', 'debug', fallback = False)
