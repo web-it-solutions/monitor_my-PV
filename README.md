@@ -39,7 +39,7 @@ If no `_user.ini` is present, the default configuration will be used:
 # Set to True to get some debug output in CLI
 debug = False
 # Define fields (comma separated) which data should be collected - leave blank to collect all (see README.md for available fields)
-fields = m0sum, power, status, surplus, temp1, ww1target
+fields = power, status, temp1, ww1target
 # IP for connection to AC ELWA-E (required)
 ip =
 ```
@@ -72,7 +72,7 @@ ip = 0.0.0.0
 As you have to specify at least the IP address of your heating element for a working setup, I absolutely recommend it to go this way.
 
 ## Setup
-This is ajust a suggestion how a setup could look like. Feel free to adjust it to your needs or prerequisites. I already use Grafana to visualize data, therefore the docker image is mentioned down below. 
+This is just a suggestion how a setup could look like. Feel free to adjust it to your needs or prerequisites. I already use Grafana to visualize data, therefore the docker image is mentioned down below. 
 
 ### InfluxDB
 - Official docker image of [influxdb:1.8](https://hub.docker.com/layers/library/influxdb/1.8/images/sha256-c436689dc135f204734d63b82fd03044fa3a5205127cb2d1fa7398ff224936b1?context=explore)
@@ -104,7 +104,7 @@ I use this script to monitor my heating element once a minute via `task schedule
 - Grafana panels & dashboards
 - Usage of tags within InfluxDB
 
-# AC ELWA-E
+## AC ELWA-E
 The data is provided via a JSON API which you can call via `http://<IP>>/data.jsn`. The following fields are provided by a device with the following firmware version (`fwversion`): 00204.03.
 
 Following a list of all fields of my device (alphabetically ordered, with explanations of fields):
