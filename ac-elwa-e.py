@@ -8,7 +8,7 @@ import urllib.request
 
 # configuration
 config = ConfigParser()
-config.read('config.ini')
+config.read(['_config.ini', '_user.ini'])
 
 # debug mode
 debug = config.getboolean('source', 'debug', fallback = False)
@@ -39,7 +39,7 @@ def connectToInfluxDB():
 
     return influxDBClient
 
-# converts data so it has 'correct' value
+# converts data for special keys so they have 'correct' values
 def convertFieldValues(data):
     for key in data:
         if key in ['temp1', 'ww1target']:
@@ -91,7 +91,7 @@ def writeDataToInfluxDB(fields):
 influxDBClient = connectToInfluxDB()
 data = getData()
 data = convertFieldValues(data)
-#writeDataToInfluxDB(data)
+writeDataToInfluxDB(data)
 
 if True == debug:
     print('Debug: AC ELWA-E data:')
