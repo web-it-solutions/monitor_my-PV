@@ -2,17 +2,18 @@
     "id": 2,
     "gridPos": {
         "h": 15,
-        "w": 18,
+        "w": 12,
         "x": 0,
-        "y": 4
+        "y": 6
     },
     "type": "timeseries",
     "title": "AC ELWA-E",
     "datasource": {
-        "uid": "4DBLH54Vz",
-        "type": "influxdb"
+        "type": "influxdb",
+        "uid": "4DBLH54Vz"
     },
     "pluginVersion": "9.1.6",
+    "description": "Power & temperatures (actual & target)",
     "fieldConfig": {
         "defaults": {
             "custom": {
@@ -30,6 +31,7 @@
                     "group": "A"
                 },
                 "axisPlacement": "auto",
+                "axisLabel": "",
                 "axisColorMode": "text",
                 "scaleDistribution": {
                     "type": "linear"
@@ -73,8 +75,8 @@
                     {
                         "id": "color",
                         "value": {
-                            "mode": "fixed",
-                            "fixedColor": "red"
+                            "fixedColor": "red",
+                            "mode": "fixed"
                         }
                     }
                 ]
@@ -88,8 +90,8 @@
                     {
                         "id": "color",
                         "value": {
-                            "mode": "fixed",
-                            "fixedColor": "green"
+                            "fixedColor": "green",
+                            "mode": "fixed"
                         }
                     },
                     {
@@ -110,7 +112,7 @@
             "displayMode": "table",
             "placement": "bottom",
             "calcs": [
-                "last"
+                "lastNotNull"
             ]
         }
     },
@@ -144,14 +146,14 @@
             "select": [
                 [
                     {
-                        "type": "field",
                         "params": [
                             "power"
-                        ]
+                        ],
+                        "type": "field"
                     },
                     {
-                        "type": "mean",
-                        "params": []
+                        "params": [],
+                        "type": "mean"
                     }
                 ]
             ],
@@ -185,14 +187,14 @@
             "select": [
                 [
                     {
-                        "type": "field",
                         "params": [
                             "temp1"
-                        ]
+                        ],
+                        "type": "field"
                     },
                     {
-                        "type": "mean",
-                        "params": []
+                        "params": [],
+                        "type": "mean"
                     }
                 ]
             ],
@@ -227,20 +229,19 @@
             "select": [
                 [
                     {
-                        "type": "field",
                         "params": [
                             "ww1target"
-                        ]
+                        ],
+                        "type": "field"
                     },
                     {
-                        "type": "mean",
-                        "params": []
+                        "params": [],
+                        "type": "mean"
                     }
                 ]
             ],
             "tags": []
         }
     ],
-    "transparent": true,
-    "description": ""
+    "transparent": true
 }

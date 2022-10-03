@@ -106,9 +106,20 @@ I use this script to monitor my heating element once a minute via `task schedule
 
 ## Grafana
 ### Overview panel
-My first panel is a graph which displays the `power` and the temperatures (`temp1` and `ww1target`) of the AC ELWA-E ([download json](grafana/panels/ac-elwa-e_power-and-temperatures.json)).
+My first panel is a graph (type `time series`) which displays the `power` and the temperatures (`temp1` and `ww1target`) of the AC ELWA-E ([json](grafana/panels/ac-elwa-e_power-and-temperatures.json)).
 
 ![Overview](grafana/screenshots/ac-elwa-e_power-and-temperatures.png "Power and temperatures")
+
+Here are two more panels (both of type `stat`) which displays the current states `Blocked`, `Heating` & `Standby` ([json](grafana/panels/ac-elwa-e_state.json)) and the power ([json](grafana/panels/aac-elwa-e_power.json)) to the according states in different colors (<span style="color: #F2495C;">Blocked</span>, <span style="color: #73BF69;">Heating</span>, <span style="color: #CCCCDC;">Standby</span>).
+
+![State-blocked](grafana/screenshots/ac-elwa-e_state-blocked.png "State: blocked")
+![Power-blocked](grafana/screenshots/ac-elwa-e_power-blocked.png "Power: blocked")
+
+![State-heating](grafana/screenshots/ac-elwa-e_state-heating.png "State: heating")
+![Power-heating](grafana/screenshots/ac-elwa-e_power-heating.png "Power: heating")
+
+![State-standby](grafana/screenshots/ac-elwa-e_state-standby.png "State: standby")
+![Power-standby](grafana/screenshots/ac-elwa-e_power-standby.png "Power: standby")
 
 All panels can be found within `grafana/panels`. Feel free to import into your dashboards and adjust to your needs.
 

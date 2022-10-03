@@ -1,0 +1,115 @@
+{
+    "id": 4,
+    "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 1
+    },
+    "type": "stat",
+    "title": "State",
+    "datasource": {
+        "type": "influxdb",
+        "uid": "4DBLH54Vz"
+    },
+    "pluginVersion": "9.1.6",
+    "fieldConfig": {
+        "defaults": {
+            "mappings": [
+                {
+                    "options": {
+                        "2": {
+                            "color": "green",
+                            "index": 0,
+                            "text": "Heating"
+                        },
+                        "3": {
+                            "index": 1,
+                            "text": "Standby"
+                        },
+                        "22": {
+                            "color": "red",
+                            "index": 2,
+                            "text": "Blocked"
+                        }
+                    },
+                    "type": "value"
+                }
+            ],
+            "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                        "color": "green",
+                        "value": null
+                    }
+                ]
+            },
+            "color": {
+                "fixedColor": "text",
+                "mode": "fixed"
+            },
+            "unit": "string"
+        },
+        "overrides": []
+    },
+    "options": {
+        "reduceOptions": {
+            "values": false,
+            "calcs": [
+                "lastNotNull"
+            ],
+            "fields": "/^State$/"
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "text": {}
+    },
+    "targets": [
+        {
+            "alias": "State",
+            "datasource": {
+                "type": "influxdb",
+                "uid": "4DBLH54Vz"
+            },
+            "groupBy": [
+                {
+                    "params": [
+                        "$__interval"
+                    ],
+                    "type": "time"
+                },
+                {
+                    "params": [
+                        "null"
+                    ],
+                    "type": "fill"
+                }
+            ],
+            "measurement": "ac_elwa_e",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+                [
+                    {
+                        "params": [
+                            "status"
+                        ],
+                        "type": "field"
+                    },
+                    {
+                        "params": [],
+                        "type": "last"
+                    }
+                ]
+            ],
+            "tags": []
+        }
+    ],
+    "transparent": true
+}

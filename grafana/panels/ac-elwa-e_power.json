@@ -1,0 +1,112 @@
+{
+    "id": 6,
+    "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 1
+    },
+    "type": "stat",
+    "title": "Power",
+    "datasource": {
+        "type": "influxdb",
+        "uid": "4DBLH54Vz"
+    },
+    "pluginVersion": "9.1.6",
+    "fieldConfig": {
+        "defaults": {
+            "mappings": [],
+            "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                        "color": "text",
+                        "value": null
+                    },
+                    {
+                        "color": "green",
+                        "value": 1
+                    }
+                ]
+            },
+            "color": {
+                "fixedColor": "text",
+                "mode": "fixed"
+            },
+            "min": 0,
+            "unit": "watt"
+        },
+        "overrides": [
+            {
+                "matcher": {
+                    "id": "byName",
+                    "options": "Power"
+                },
+                "properties": [
+                    {
+                        "id": "color"
+                    }
+                ]
+            }
+        ]
+    },
+    "options": {
+        "reduceOptions": {
+            "values": false,
+            "calcs": [
+                "lastNotNull"
+            ],
+            "fields": "/^Power$/"
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "text": {}
+    },
+    "targets": [
+        {
+            "alias": "Power",
+            "datasource": {
+                "type": "influxdb",
+                "uid": "4DBLH54Vz"
+            },
+            "groupBy": [
+                {
+                    "params": [
+                        "$__interval"
+                    ],
+                    "type": "time"
+                },
+                {
+                    "params": [
+                        "null"
+                    ],
+                    "type": "fill"
+                }
+            ],
+            "measurement": "ac_elwa_e",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+                [
+                    {
+                        "params": [
+                            "power"
+                        ],
+                        "type": "field"
+                    },
+                    {
+                        "params": [],
+                        "type": "last"
+                    }
+                ]
+            ],
+            "tags": []
+        }
+    ],
+    "transparent": true
+}
