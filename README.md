@@ -101,7 +101,7 @@ Log into you InfluxDB to check whether the data is stored correctly. If you use 
 I use this script to monitor my heating element once a minute via `task scheduler` on a Synology NAS DS720+. Grafana and InfluxDB are running in a docker container each.
 
 ### Roadmap/Still to come
-- Grafana panels & dashboards
+- Grafana dashboard
 - Usage of tags within InfluxDB
 
 ## Grafana
@@ -110,7 +110,7 @@ My first panel is a graph (type `time series`) which displays the `power` and th
 
 ![Overview](grafana/screenshots/ac-elwa-e_power-and-temperatures.png "Power and temperatures")
 
-Here are two more panels (both of type `stat`) which displays the current states `Blocked`, `Heating` & `Standby` ([json](grafana/panels/ac-elwa-e_state.json)) and the power ([json](grafana/panels/aac-elwa-e_power.json)) to the according states in different colors (<span style="color: #F2495C;">Blocked</span>, <span style="color: #73BF69;">Heating</span>, <span style="color: #CCCCDC;">Standby</span>).
+Here are two more panels (both of type `stat`) which displays the current states `Blocked`, `Heating` & `Standby` ([json](grafana/panels/ac-elwa-e_state.json)) and the power ([json](grafana/panels/ac-elwa-e_power.json)) to the according states in different colors (<span style="color: #F2495C;">Blocked</span>, <span style="color: #73BF69;">Heating</span>, <span style="color: #CCCCDC;">Standby</span>).
 
 ![State-blocked](grafana/screenshots/ac-elwa-e_state-blocked.png "State: blocked")
 ![Power-blocked](grafana/screenshots/ac-elwa-e_power-blocked.png "Power: blocked")
@@ -127,7 +127,7 @@ All panels can be found within `grafana/panels`. Feel free to import into your d
 The data is provided via a JSON API which you can call via `http://<IP>>/data.jsn`. The following fields are provided by a device with the following firmware version (`fwversion`): 00204.03.
 
 Following a list of all fields of my device (alphabetically ordered, with explanations of fields):
-- blockactive
+- blockactive (`integer`: block active via time start/stop or e.g. missing power from inverter via Modbus)
 - boostactive
 - boostpower
 - cloudstate
@@ -140,20 +140,20 @@ Following a list of all fields of my device (alphabetically ordered, with explan
 - device
 - ecarboostctr
 - ecarstate
-- fwversion
+- fwversion (`string`: firmware version)
 - legboostnext
 - loctime
 - m0bat
 - m0l1
 - m0l2
 - m0l3
-- m0sum (`integer`: feedb-in point in [W])
-- m1devstate
+- m0sum (`integer`: feed-in point in [W])
+- m1devstate (`integer`: state of Modbus communication with solar inverter)
 - m1l1
 - m1l2
 - m1l3
 - m1sum
-- m2devstate
+- m2devstate (`integer`: state of Modbus communication with battery inverter)
 - m2l1
 - m2l2
 - m2l3
@@ -194,11 +194,11 @@ Following a list of all fields of my device (alphabetically ordered, with explan
 - mss8
 - mss9
 - power (`integer`: power used in [W])
-- status (`integer`: Standby[3]|Heating[2])
+- status (`integer`: Heating[2]|Standby[3])
 - surplus (`integer`: meter + battery charging in [W])
-- temp1 (`float`: current water temperature)
+- temp1 (`float`: current water temperature - will be converted to `float` by script [460 -> 46.0 °C])
 - tempchip
 - unixtime
-- ww1target (`float`: target water temperature)
+- ww1target (`integer`: target water temperature - will be converted to `float` by script [649 -> 64.9 °C])
 
 If anyone has a tip for me on where to find official data on what each field means, feel free to contact me!
